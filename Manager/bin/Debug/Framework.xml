@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Framework</name>
+    </assembly>
+    <members>
+        <member name="M:Framework.Event.AbstractEvent`2.TriggerEvent``1(``0)">
+            <summary>
+            事件通知
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="varEvent"></param>
+        </member>
+        <member name="M:Framework.Event.AbstractEvent`2.CallEventDelegate(`0,`1)">
+            <summary>
+            执行回调
+            </summary>
+            <param name="varhead"></param>
+            <param name="varevent"></param>
+        </member>
+        <member name="M:Framework.Manager.GlobalEventManager.RigistEvent``1(System.Action{``0})">
+            <summary>
+            添加事件监听
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Manager.GlobalEventManager.UnrigistEvent``1(System.Action{``0})">
+            <summary>
+            解除事件监听
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="callback"></param>
+        </member>
+        <member name="M:Framework.Manager.CurrentSceneEventManager.RigistEvent``1(System.Action{``0})">
+            <summary>
+            添加事件监听
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Manager.CurrentSceneEventManager.UnrigistEvent``1(System.Action{``0})">
+            <summary>
+            解除事件监听
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="callback"></param>
+        </member>
+        <member name="F:Framework.Manager.LanguageManager.LanguageType.Chinese">
+            <summary>
+            中文
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.LanguageManager.LanguageType.English">
+            <summary>
+            英文
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.LanguageManager.LanguageType.Korean">
+            <summary>
+            韩文
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.LanguageManager.LanguageType.Japanese">
+            <summary>
+            日文
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.LanguageManager.LanguageType.German">
+            <summary>
+            德文
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.LanguageManager.LanguageType.Tibetan">
+            <summary>
+            藏文
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.LanguageManager.LanguageType.Russian">
+            <summary>
+            俄文
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.LanguageManager.LanguageType.Spanish">
+            <summary>
+            西班牙文
+            </summary>
+        </member>
+        <member name="M:Framework.Manager.LanguageManager.GetValueToKey(System.String)">
+            <summary>
+            获取值
+            </summary>
+            <param name="Key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Manager.LanguageManager.GetValueToKeys(System.String[])">
+            <summary>
+            获取值
+            </summary>
+            <param name="Key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Manager.LanguageManager.Add(System.Action)">
+            <summary>
+            添加语言切换回调
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="P:Framework.Manager.LanguageManager.Setting_LanguageType">
+            <summary>
+            切换语言
+            </summary>
+        </member>
+        <member name="M:Framework.Manager.LanguageManager.Init(Framework.Manager.LanguageManager.Language[])">
+            <summary>
+            初始化语言包
+            </summary>
+            <param name="language"></param>
+        </member>
+        <member name="M:Framework.Manager.LanguageManager.ReadTextAsset(UnityEngine.TextAsset,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            读取Txt文本
+            </summary>
+            <param name="varTextAsset"></param>
+            <param name="varDic"></param>
+        </member>
+        <member name="M:Framework.Manager.LanguageManager.RemovedNullString(System.String[])">
+            <summary>
+            移除数组中无效的字符串
+            </summary>
+            <param name="varContent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Manager.LanguageManager.TestingKeyLegal(System.String@)">
+            <summary>
+            检测Key的合法性
+            </summary>
+            <param name="Key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Manager.LanguageManager.TestingValueLegal(System.String)">
+            <summary>
+            检测Value值的合法性
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Manager.LanguageManager.ClearSpilth(System.String)">
+            <summary>
+            移除多余的字符
+            </summary>
+            <param name="varValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.UI.HelpText.PasswordText">
+            <summary>
+            密码文字
+            </summary>
+        </member>
+        <member name="M:Framework.UI.HelpText.TextText">
+            <summary>
+            文本文字
+            </summary>
+        </member>
+        <member name="M:Framework.UI.HelpText.NameText">
+            <summary>
+            昵称文字
+            </summary>
+        </member>
+        <member name="M:Framework.UI.HelpText.MoneyText">
+            <summary>
+            金币文字
+            </summary>
+        </member>
+        <member name="T:Framework.UI.HelpTxtValueToKey">
+            <summary>
+            根据Key值获取其对应的Value值与LanguageManager联合使用
+            </summary>
+        </member>
+        <member name="T:Framework.UI.TextSpacing">
+            <summary>
+            设置字间距
+            </summary>
+        </member>
+        <member name="T:Framework.UI.Gradient">
+            <summary>
+            设置颜色的上下渐变
+            </summary>
+        </member>
+    </members>
+</doc>
