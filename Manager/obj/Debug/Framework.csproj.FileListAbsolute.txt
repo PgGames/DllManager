@@ -4,7 +4,6 @@ C:\Users\mormon\Documents\Visual Studio 2017\Projects\Manager\Manager\bin\Debug\
 C:\Users\mormon\Documents\Visual Studio 2017\Projects\Manager\Manager\bin\Debug\UnityEditor.xml
 C:\Users\mormon\Documents\Visual Studio 2017\Projects\Manager\Manager\bin\Debug\UnityEngine.xml
 C:\Users\mormon\Documents\Visual Studio 2017\Projects\Manager\Manager\bin\Debug\UnityEngine.UI.xml
-C:\Users\mormon\Documents\Visual Studio 2017\Projects\Manager\Manager\obj\Debug\Framework.csprojAssemblyReference.cache
 C:\Users\mormon\Documents\Visual Studio 2017\Projects\Manager\Manager\obj\Debug\Framework.csproj.CoreCompileInputs.cache
 C:\Users\mormon\Documents\Visual Studio 2017\Projects\Manager\Manager\obj\Debug\Framework.csproj.CopyComplete
 C:\Users\mormon\Documents\Visual Studio 2017\Projects\Manager\Manager\bin\Debug\Framework.xml
@@ -12,3 +11,6 @@ C:\Users\mormon\Documents\Visual Studio 2017\Projects\Manager\Manager\bin\Debug\
 C:\Users\mormon\Documents\Visual Studio 2017\Projects\Manager\Manager\bin\Debug\Framework.pdb
 C:\Users\mormon\Documents\Visual Studio 2017\Projects\Manager\Manager\obj\Debug\Framework.dll
 C:\Users\mormon\Documents\Visual Studio 2017\Projects\Manager\Manager\obj\Debug\Framework.pdb
+F:\Unity\Project_2017_4_11f1\NC_81Bridge\trunk\Demo\Assets\Plugins\Framework.dll
+F:\Unity\Project_2017_4_11f1\NC_81Bridge\trunk\Demo\Assets\Plugins\Framework.pdb
+F:\Unity\Project_2017_4_11f1\NC_81Bridge\trunk\Demo\Assets\Plugins\Framework.xml

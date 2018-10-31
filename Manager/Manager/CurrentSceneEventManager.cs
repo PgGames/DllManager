@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Framework.Manager
 {
+    /// <summary>
+    /// 临时的事件管理器（切换场景时事件会被清空）
+    /// </summary>
     public class CurrentSceneEventManager : AbstractEvent<CurrentEventHead, CurrentSceneEventManager.CurrentEvent>
     {
         private static CurrentSceneEventManager m_instance;

@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Framework.Manager
 {
+    /// <summary>
+    /// 永久性事件管理器（切换场景时不会被清理）
+    /// </summary>
     public class GlobalEventManager : AbstractEvent<GlobalEventHead, GlobalEventManager.GlobalEvent>
     {
         private static GlobalEventManager m_instance;

@@ -15,19 +15,23 @@ namespace Framework.UI
         private string Key;
         public Text m_Content;
 
-        public void Awake()
+        private void Awake()
         {
             LanguageManager.GetManager.Add(GetValueToKey);
             if (m_Content == null)
                 m_Content = this.transform.GetComponent<Text>();
             GetValueToKey();
         }
+        /// <summary>
+        /// 设置Key值并更新Value
+        /// </summary>
+        /// <param name="varKey"></param>
         public void SettingKey(string varKey)
         {
             Key = varKey;
             GetValueToKey();
         }
-        public void GetValueToKey()
+        private void GetValueToKey()
         {
             string Value = LanguageManager.GetManager.GetValueToKey(Key);
             if (m_Content != null)

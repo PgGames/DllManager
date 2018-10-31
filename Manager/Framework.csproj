@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>F:\Unity\Project_2017_4_11f1\NC_81Bridge\trunk\Demo\Assets\Plugins\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -49,9 +49,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\DontManager.cs" />
+    <Compile Include="Base\Manager.cs" />
     <Compile Include="Event\AbstractEvent.cs" />
+    <Compile Include="Help\Helper.cs" />
     <Compile Include="Manager\GlobalEventManager.cs" />
     <Compile Include="Manager\CurrentSceneEventManager.cs" />
+    <Compile Include="UI\Gradients.cs" />
     <Compile Include="UI\HelpText.cs" />
     <Compile Include="UI\HelpTxtValueToKey.cs" />
     <Compile Include="Manager\LanguageManager.cs" />
@@ -59,5 +63,6 @@
     <Compile Include="UI\TextSpacing.cs" />
     <Compile Include="UI\Gradient.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

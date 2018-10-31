@@ -4,6 +4,23 @@
         <name>Framework</name>
     </assembly>
     <members>
+        <member name="T:Framework.Base.DontManager`1">
+            <summary>
+            单利类型的基类(切换场景时单利不会被清楚)
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Framework.Base.Manager`1">
+            <summary>
+            单利类型的基类（切换场景时单利会被初始化）
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Framework.Base.Manager`1.OnDestroy">
+            <summary>
+            在继承中实现该方法可避免初始化
+            </summary>
+        </member>
         <member name="M:Framework.Event.AbstractEvent`2.TriggerEvent``1(``0)">
             <summary>
             事件通知
@@ -17,6 +34,123 @@
             </summary>
             <param name="varhead"></param>
             <param name="varevent"></param>
+        </member>
+        <member name="T:Framework.Help.Helper">
+            <summary>
+            帮助工具
+            </summary>
+        </member>
+        <member name="M:Framework.Help.Helper.SaveFile(System.String,System.Byte[])">
+            <summary>
+            存储文件
+                当文件夹路径不存在时会自动创建文件夹
+            </summary>
+            <param name="path">存储路径</param>
+            <param name="date">储存数据</param>
+            <returns>存储文件成功或失败</returns>
+        </member>
+        <member name="M:Framework.Help.Helper.FileExists(System.String)">
+            <summary>
+            判断文件是否存在
+            </summary>
+            <param name="varPath">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Help.Helper.GetComponent``1(UnityEngine.Transform)">
+            <summary>
+            从物体的上级(父级)查找组件
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="var_Tran"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Help.Helper.GetGames(UnityEngine.Transform)">
+            <summary>
+            获取物体下的所有子集（不包含子集的子集）
+            </summary>
+            <param name="varTran"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Help.Helper.SetActive(UnityEngine.GameObject,System.Boolean,System.String)">
+            <summary>
+            设置物体的状态
+            </summary>
+            <param name="varGame"></param>
+            <param name="path"></param>
+            <param name="activeSelf"></param>
+        </member>
+        <member name="M:Framework.Help.Helper.LoadXml``1(System.String,``0@)">
+            <summary>
+            解析Xml文件
+            * ===============================
+            * Xml文件的编写结构
+            * 
+            * ===============================
+            * <!--<?xml version="1.0"?>
+            * <LogoXmlList>
+            *   <LogoXmlinfo id="1" png="one"	/>
+            *   <LogoXmlinfo id="2" png="two"	/>
+            * </LogoXmlList>
+            * -->
+            </summary>
+            <typeparam name="T">
+            * ===============================================
+            * Xml用于解析的函数编写结构
+            *          数据值用 属性变量编写
+            * 如下为Xml解析结构的编写示例
+            * ===============================================
+            * public class LogoXmlinfo
+            * {
+            *     [XmlAttribute(AttributeName = "id")]
+            *     public string id { set; get; }
+            *     [XmlAttribute(AttributeName = "png")]
+            *     public string Png { set; get; }
+            * }
+            * [XmlRoot("LogoXmlList")]
+            * public class LogoXmlList
+            * {
+            *     [XmlElement("LogoXmlinfo")]
+            *     public LogoXmlinfo[] Ins { set; get; }
+            * }
+            * ===============================================
+            </typeparam>
+            <param name="path"></param>
+            <param name="ms"></param>
+        </member>
+        <member name="M:Framework.Help.Helper.LoadJson``1(System.String)">
+            <summary>
+            解析Json文件
+            * ===============================
+            * Json文件的编写结构
+            * 
+            * ===============================
+            </summary>
+            <typeparam name="T">
+            * Json用于解析的函数编写结构
+            * 数据值用 值变量编写不可用属性变量
+            * 如下为Json解析结构的编写示例
+            * =============================================
+            *  public class JsonNotice
+            *  {
+            *      public string success;
+            *      public string text;
+            *  }
+            * ============================================= 
+            </typeparam>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Help.Helper.Number(System.UInt32)">
+            <summary>
+            将数字转换成中文
+            </summary>
+            <param name="varNum"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Framework.Manager.GlobalEventManager">
+            <summary>
+            永久性事件管理器（切换场景时不会被清理）
+            </summary>
         </member>
         <member name="M:Framework.Manager.GlobalEventManager.RigistEvent``1(System.Action{``0})">
             <summary>
@@ -33,6 +167,11 @@
             <typeparam name="T"></typeparam>
             <param name="callback"></param>
         </member>
+        <member name="T:Framework.Manager.CurrentSceneEventManager">
+            <summary>
+            临时的事件管理器（切换场景时事件会被清空）
+            </summary>
+        </member>
         <member name="M:Framework.Manager.CurrentSceneEventManager.RigistEvent``1(System.Action{``0})">
             <summary>
             添加事件监听
@@ -47,6 +186,11 @@
             </summary>
             <typeparam name="T"></typeparam>
             <param name="callback"></param>
+        </member>
+        <member name="T:Framework.Manager.LanguageManager.LanguageType">
+            <summary>
+            语言类型
+            </summary>
         </member>
         <member name="F:Framework.Manager.LanguageManager.LanguageType.Chinese">
             <summary>
@@ -86,6 +230,11 @@
         <member name="F:Framework.Manager.LanguageManager.LanguageType.Spanish">
             <summary>
             西班牙文
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.LanguageManager.LanguageType.Other">
+            <summary>
+            其他语言
             </summary>
         </member>
         <member name="M:Framework.Manager.LanguageManager.GetValueToKey(System.String)">
@@ -154,6 +303,31 @@
             <param name="varValue"></param>
             <returns></returns>
         </member>
+        <member name="T:Framework.UI.Gradient">
+            <summary>
+            设置颜色的上下渐变
+            </summary>
+        </member>
+        <member name="F:Framework.UI.Gradient.topColor">
+            <summary>
+            上边的颜色
+            </summary>
+        </member>
+        <member name="F:Framework.UI.Gradient.bottomColor">
+            <summary>
+            下边的颜色
+            </summary>
+        </member>
+        <member name="F:Framework.UI.Gradient.m_Everyword">
+            <summary>
+            每个字的顶点数
+            </summary>
+        </member>
+        <member name="M:Framework.UI.Gradient.SettingEveryword(System.Collections.Generic.List{UnityEngine.UIVertex},System.Single,System.Single,System.Int32)">
+            <summary>
+            设置每个字的颜色信息
+            </summary>
+        </member>
         <member name="M:Framework.UI.HelpText.PasswordText">
             <summary>
             密码文字
@@ -179,12 +353,18 @@
             根据Key值获取其对应的Value值与LanguageManager联合使用
             </summary>
         </member>
+        <member name="M:Framework.UI.HelpTxtValueToKey.SettingKey(System.String)">
+            <summary>
+            设置Key值并更新Value
+            </summary>
+            <param name="varKey"></param>
+        </member>
         <member name="T:Framework.UI.TextSpacing">
             <summary>
             设置字间距
             </summary>
         </member>
-        <member name="T:Framework.UI.Gradient">
+        <member name="T:Framework.UI.Gradients">
             <summary>
             设置颜色的上下渐变
             </summary>

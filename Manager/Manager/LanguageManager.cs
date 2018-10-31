@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using Framework.Base;
 
 namespace Framework.Manager
 {
@@ -16,25 +17,27 @@ namespace Framework.Manager
      *      Value 值使用[]
     //===========================================================*/
 
-    public class LanguageManager : MonoBehaviour
+    public class LanguageManager : DontManager<LanguageManager>
     {
-        private static LanguageManager m_Manager;
-        public static LanguageManager GetManager
-        {
-            get
-            {
-                if (m_Manager == null)
-                {
-                    GameObject tempGame = new GameObject("LanguageManager");
-                    m_Manager = tempGame.AddComponent<LanguageManager>();
-                    GameObject.DontDestroyOnLoad(tempGame);
-                }
-                return m_Manager;
-            }
-        }
+        //private static LanguageManager m_Manager;
+        //public static LanguageManager GetManager
+        //{
+        //    get
+        //    {
+        //        if (m_Manager == null)
+        //        {
+        //            GameObject tempGame = new GameObject("LanguageManager");
+        //            m_Manager = tempGame.AddComponent<LanguageManager>();
+        //            GameObject.DontDestroyOnLoad(tempGame);
+        //        }
+        //        return m_Manager;
+        //    }
+        //}
 
         private List<Action> CallBack = new List<Action>();
-
+        /// <summary>
+        /// 语言类型
+        /// </summary>
         public enum LanguageType
         {
             /// <summary>
@@ -69,6 +72,10 @@ namespace Framework.Manager
             /// 西班牙文
             /// </summary>
             Spanish,
+            /// <summary>
+            /// 其他语言
+            /// </summary>
+            Other
         }
         private LanguageType m_Language = LanguageType.Chinese;
 
