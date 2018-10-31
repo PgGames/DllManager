@@ -86,7 +86,6 @@ namespace Framework.UI
         void SettingEveryword(List<UIVertex> vertexList,float topY,float bottomY,int idx)
         {
             float uiElementHeight = Mathf.Abs(topY - bottomY);
-            Debug.LogError(uiElementHeight);
             for (int j = idx; j < idx + m_Everyword; j++)
             {
                 UIVertex uiVertex = vertexList[j];

@@ -14,3 +14,4 @@ C:\Users\mormon\Documents\Visual Studio 2017\Projects\Manager\Manager\obj\Debug\
 F:\Unity\Project_2017_4_11f1\NC_81Bridge\trunk\Demo\Assets\Plugins\Framework.dll
 F:\Unity\Project_2017_4_11f1\NC_81Bridge\trunk\Demo\Assets\Plugins\Framework.pdb
 F:\Unity\Project_2017_4_11f1\NC_81Bridge\trunk\Demo\Assets\Plugins\Framework.xml
+C:\Users\mormon\Documents\Visual Studio 2017\Projects\Manager\Manager\obj\Debug\Framework.csprojAssemblyReference.cache
