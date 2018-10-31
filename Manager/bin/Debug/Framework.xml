@@ -303,29 +303,9 @@
             <param name="varValue"></param>
             <returns></returns>
         </member>
-        <member name="T:Framework.UI.Gradient">
+        <member name="T:Framework.UI.Gradients">
             <summary>
             设置颜色的上下渐变
-            </summary>
-        </member>
-        <member name="F:Framework.UI.Gradient.topColor">
-            <summary>
-            上边的颜色
-            </summary>
-        </member>
-        <member name="F:Framework.UI.Gradient.bottomColor">
-            <summary>
-            下边的颜色
-            </summary>
-        </member>
-        <member name="F:Framework.UI.Gradient.m_Everyword">
-            <summary>
-            每个字的顶点数
-            </summary>
-        </member>
-        <member name="M:Framework.UI.Gradient.SettingEveryword(System.Collections.Generic.List{UnityEngine.UIVertex},System.Single,System.Single,System.Int32)">
-            <summary>
-            设置每个字的颜色信息
             </summary>
         </member>
         <member name="M:Framework.UI.HelpText.PasswordText">
@@ -364,9 +344,29 @@
             设置字间距
             </summary>
         </member>
-        <member name="T:Framework.UI.Gradients">
+        <member name="T:Framework.UI.Gradient">
             <summary>
             设置颜色的上下渐变
+            </summary>
+        </member>
+        <member name="F:Framework.UI.Gradient.topColor">
+            <summary>
+            上边的颜色
+            </summary>
+        </member>
+        <member name="F:Framework.UI.Gradient.bottomColor">
+            <summary>
+            下边的颜色
+            </summary>
+        </member>
+        <member name="F:Framework.UI.Gradient.m_Everyword">
+            <summary>
+            每个字的顶点数
+            </summary>
+        </member>
+        <member name="M:Framework.UI.Gradient.SettingEveryword(System.Collections.Generic.List{UnityEngine.UIVertex},System.Single,System.Single,System.Int32)">
+            <summary>
+            设置每个字的颜色信息
             </summary>
         </member>
     </members>
