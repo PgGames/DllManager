@@ -7,33 +7,20 @@ using Framework.Base;
 
 namespace Framework.Manager
 {
-    /*/===========================================================
-     * 文本的有效格式 Text Key = Value;
-     * Txt文本的编码格式必须为UTF-8的编码格式
-     *      key 于 Value 形成键值对的格式
-     *      key中不能有空格的出现
-     *      key值只能有字母数字和下划线构成
-     *      Value 值的前后不可有空格
-     *      Value 值使用[]
-    //===========================================================*/
-
+    /// <summary>
+    /// 语言文字管理
+    /// * ===========================================================
+    /// * 文本的有效格式 Text Key = Value;
+    /// * Txt文本的编码格式必须为UTF-8的编码格式
+    /// *      key 于 Value 形成键值对的格式
+    /// *      key中不能有空格的出现
+    /// *      key值只能有字母数字和下划线构成
+    /// *      Value 值的前后不可有空格
+    /// *      Value 值使用[]
+    /// * ===========================================================
+    /// </summary>
     public class LanguageManager : DontManager<LanguageManager>
     {
-        //private static LanguageManager m_Manager;
-        //public static LanguageManager GetManager
-        //{
-        //    get
-        //    {
-        //        if (m_Manager == null)
-        //        {
-        //            GameObject tempGame = new GameObject("LanguageManager");
-        //            m_Manager = tempGame.AddComponent<LanguageManager>();
-        //            GameObject.DontDestroyOnLoad(tempGame);
-        //        }
-        //        return m_Manager;
-        //    }
-        //}
-
         private List<Action> CallBack = new List<Action>();
         /// <summary>
         /// 语言类型
@@ -152,7 +139,9 @@ namespace Framework.Manager
 
         #endregion
 
-
+        /// <summary>
+        /// 语言字典
+        /// </summary>
         protected Dictionary<LanguageType, Dictionary<string, string>> Dic_Language = new Dictionary<LanguageType, Dictionary<string, string>>();
 
 
@@ -304,10 +293,18 @@ namespace Framework.Manager
             return Value;
         }
 
-
+        /// <summary>
+        /// 语言结构
+        /// </summary>
         public struct Language
         {
+            /// <summary>
+            /// 语言类型
+            /// </summary>
             public LanguageType m_Type;
+            /// <summary>
+            /// 语言文本
+            /// </summary>
             public TextAsset m_Txt;
         }
     }

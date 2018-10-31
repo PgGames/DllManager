@@ -10,6 +10,9 @@ namespace Framework.Manager
     public class CurrentSceneEventManager : AbstractEvent<CurrentEventHead, CurrentSceneEventManager.CurrentEvent>
     {
         private static CurrentSceneEventManager m_instance;
+        /// <summary>
+        /// 
+        /// </summary>
         public static CurrentSceneEventManager Instance
         {
             get
@@ -55,13 +58,24 @@ namespace Framework.Manager
             base.UnregistEvent(current);    //解除注册
         }
 
+        /// <summary>
+        /// 事件广播回调
+        /// </summary>
+        /// <param name="varhead"></param>
+        /// <param name="varevent"></param>
         protected override void CallEventDelegate(CurrentEventHead varhead, CurrentEvent varevent)
         {
             varevent.CallBack.DynamicInvoke(varhead);
         }
+        /// <summary>
+        /// 事件类
+        /// </summary>
         public class CurrentEvent : EventClass
         { }
     }
+    /// <summary>
+    /// 事件定义必须继承该类(用作传输数据内容)
+    /// </summary>
     public class CurrentEventHead
     { }
 }

@@ -10,6 +10,9 @@ namespace Framework.Manager
     public class GlobalEventManager : AbstractEvent<GlobalEventHead, GlobalEventManager.GlobalEvent>
     {
         private static GlobalEventManager m_instance;
+        /// <summary>
+        /// 
+        /// </summary>
         public static GlobalEventManager Instance
         {
             get
@@ -56,14 +59,24 @@ namespace Framework.Manager
 
             base.UnregistEvent(current);    //解除注册
         }
-
+        /// <summary>
+        /// 事件广播回调
+        /// </summary>
+        /// <param name="varhead"></param>
+        /// <param name="varevent"></param>
         protected override void CallEventDelegate(GlobalEventHead varhead, GlobalEvent varevent)
         {
             varevent.CallBack.DynamicInvoke(varhead);
         }
+        /// <summary>
+        /// 事件类
+        /// </summary>
         public class GlobalEvent : EventClass
         { }
     }
+    /// <summary>
+    /// 事件定义必须继承该类(用作传输数据内容)
+    /// </summary>
     public class GlobalEventHead
     { }
 }

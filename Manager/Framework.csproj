@@ -51,11 +51,11 @@
   <ItemGroup>
     <Compile Include="Base\DontManager.cs" />
     <Compile Include="Base\Manager.cs" />
+    <Compile Include="Editor\HelpTextEditor.cs" />
     <Compile Include="Event\AbstractEvent.cs" />
     <Compile Include="Help\Helper.cs" />
     <Compile Include="Manager\GlobalEventManager.cs" />
     <Compile Include="Manager\CurrentSceneEventManager.cs" />
-    <Compile Include="UI\Gradients.cs" />
     <Compile Include="UI\HelpText.cs" />
     <Compile Include="UI\HelpTxtValueToKey.cs" />
     <Compile Include="Manager\LanguageManager.cs" />

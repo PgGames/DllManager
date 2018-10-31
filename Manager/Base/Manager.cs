@@ -11,7 +11,9 @@ namespace Framework.Base
     public class Manager<T> : MonoBehaviour where T : Component
     {
         private static T _Manager;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public static T GetManager
         {
             get
@@ -25,6 +27,10 @@ namespace Framework.Base
                 return _Manager;
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static T Managers()
         {
             if (_Manager == null)
@@ -42,5 +48,26 @@ namespace Framework.Base
         {
             _Manager = null;
         }
+
+        void Awake()
+        {
+            if (_Manager == null)
+                _Manager = this.GetComponent<T>();
+            OnAwake();
+            Init();
+        }
+        /// <summary>
+        /// 使用OnAwake代替Awake
+        /// </summary>
+        protected virtual void OnAwake()
+        {
+        }
+        /// <summary>
+        /// 初始化信息在Awake之后调用
+        /// </summary>
+        protected virtual void Init()
+        {
+        }
+
     }
 }

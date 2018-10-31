@@ -13,6 +13,9 @@ namespace Framework.UI
     {
         [SerializeField]
         private string Key;
+        /// <summary>
+        /// 
+        /// </summary>
         public Text m_Content;
 
         private void Awake()
@@ -30,6 +33,13 @@ namespace Framework.UI
         {
             Key = varKey;
             GetValueToKey();
+        }
+        private void OnEnable()
+        {
+            if (!string.IsNullOrEmpty(Key))
+            {
+                GetValueToKey();
+            }
         }
         private void GetValueToKey()
         {

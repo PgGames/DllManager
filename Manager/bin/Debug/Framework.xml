@@ -10,16 +10,92 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
+        <member name="P:Framework.Base.DontManager`1.GetManager">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Framework.Base.DontManager`1.Managers">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Base.DontManager`1.OnAwake">
+            <summary>
+            使用OnAwake代替Awake
+            </summary>
+        </member>
+        <member name="M:Framework.Base.DontManager`1.Init">
+            <summary>
+            初始化信息在Awake之后调用
+            </summary>
+        </member>
         <member name="T:Framework.Base.Manager`1">
             <summary>
             单利类型的基类（切换场景时单利会被初始化）
             </summary>
             <typeparam name="T"></typeparam>
         </member>
+        <member name="P:Framework.Base.Manager`1.GetManager">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Framework.Base.Manager`1.Managers">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Framework.Base.Manager`1.OnDestroy">
             <summary>
             在继承中实现该方法可避免初始化
             </summary>
+        </member>
+        <member name="M:Framework.Base.Manager`1.OnAwake">
+            <summary>
+            使用OnAwake代替Awake
+            </summary>
+        </member>
+        <member name="M:Framework.Base.Manager`1.Init">
+            <summary>
+            初始化信息在Awake之后调用
+            </summary>
+        </member>
+        <member name="T:Framework.Event.EventClass">
+            <summary>
+            事件类
+            </summary>
+        </member>
+        <member name="F:Framework.Event.EventClass.m_Type">
+            <summary>
+            事件类型
+            </summary>
+        </member>
+        <member name="F:Framework.Event.EventClass.CallBack">
+            <summary>
+            事件回调
+            </summary>
+        </member>
+        <member name="T:Framework.Event.AbstractEvent`2">
+            <summary>
+            事件管理基类
+            </summary>
+            <typeparam name="TEventHead"></typeparam>
+            <typeparam name="TEvent"></typeparam>
+        </member>
+        <member name="M:Framework.Event.AbstractEvent`2.RigistEvent(`1)">
+            <summary>
+            注册信息
+            </summary>
+            <param name="varEvent"></param>
+        </member>
+        <member name="M:Framework.Event.AbstractEvent`2.UnregistEvent(`1)">
+            <summary>
+            解除注册
+            </summary>
+            <param name="varEvent"></param>
         </member>
         <member name="M:Framework.Event.AbstractEvent`2.TriggerEvent``1(``0)">
             <summary>
@@ -152,6 +228,11 @@
             永久性事件管理器（切换场景时不会被清理）
             </summary>
         </member>
+        <member name="P:Framework.Manager.GlobalEventManager.Instance">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Framework.Manager.GlobalEventManager.RigistEvent``1(System.Action{``0})">
             <summary>
             添加事件监听
@@ -167,9 +248,31 @@
             <typeparam name="T"></typeparam>
             <param name="callback"></param>
         </member>
+        <member name="M:Framework.Manager.GlobalEventManager.CallEventDelegate(Framework.Manager.GlobalEventHead,Framework.Manager.GlobalEventManager.GlobalEvent)">
+            <summary>
+            事件广播回调
+            </summary>
+            <param name="varhead"></param>
+            <param name="varevent"></param>
+        </member>
+        <member name="T:Framework.Manager.GlobalEventManager.GlobalEvent">
+            <summary>
+            事件类
+            </summary>
+        </member>
+        <member name="T:Framework.Manager.GlobalEventHead">
+            <summary>
+            事件定义必须继承该类(用作传输数据内容)
+            </summary>
+        </member>
         <member name="T:Framework.Manager.CurrentSceneEventManager">
             <summary>
             临时的事件管理器（切换场景时事件会被清空）
+            </summary>
+        </member>
+        <member name="P:Framework.Manager.CurrentSceneEventManager.Instance">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Framework.Manager.CurrentSceneEventManager.RigistEvent``1(System.Action{``0})">
@@ -186,6 +289,37 @@
             </summary>
             <typeparam name="T"></typeparam>
             <param name="callback"></param>
+        </member>
+        <member name="M:Framework.Manager.CurrentSceneEventManager.CallEventDelegate(Framework.Manager.CurrentEventHead,Framework.Manager.CurrentSceneEventManager.CurrentEvent)">
+            <summary>
+            事件广播回调
+            </summary>
+            <param name="varhead"></param>
+            <param name="varevent"></param>
+        </member>
+        <member name="T:Framework.Manager.CurrentSceneEventManager.CurrentEvent">
+            <summary>
+            事件类
+            </summary>
+        </member>
+        <member name="T:Framework.Manager.CurrentEventHead">
+            <summary>
+            事件定义必须继承该类(用作传输数据内容)
+            </summary>
+        </member>
+        <member name="T:Framework.Manager.LanguageManager">
+            <summary>
+            语言文字管理
+            * ===========================================================
+            * 文本的有效格式 Text Key = Value;
+            * Txt文本的编码格式必须为UTF-8的编码格式
+            *      key 于 Value 形成键值对的格式
+            *      key中不能有空格的出现
+            *      key值只能有字母数字和下划线构成
+            *      Value 值的前后不可有空格
+            *      Value 值使用[]
+            * ===========================================================
+            </summary>
         </member>
         <member name="T:Framework.Manager.LanguageManager.LanguageType">
             <summary>
@@ -268,6 +402,11 @@
             </summary>
             <param name="language"></param>
         </member>
+        <member name="F:Framework.Manager.LanguageManager.Dic_Language">
+            <summary>
+            语言字典
+            </summary>
+        </member>
         <member name="M:Framework.Manager.LanguageManager.ReadTextAsset(UnityEngine.TextAsset,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             读取Txt文本
@@ -303,9 +442,49 @@
             <param name="varValue"></param>
             <returns></returns>
         </member>
-        <member name="T:Framework.UI.Gradients">
+        <member name="T:Framework.Manager.LanguageManager.Language">
             <summary>
-            设置颜色的上下渐变
+            语言结构
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.LanguageManager.Language.m_Type">
+            <summary>
+            语言类型
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.LanguageManager.Language.m_Txt">
+            <summary>
+            语言文本
+            </summary>
+        </member>
+        <member name="T:Framework.UI.HelpText">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Framework.UI.HelpText.text">
+            <summary>
+            文本内容
+            </summary>
+        </member>
+        <member name="F:Framework.UI.HelpText.m_Color">
+            <summary>
+            字体颜色
+            </summary>
+        </member>
+        <member name="F:Framework.UI.HelpText.m_Type">
+            <summary>
+            文本类型
+            </summary>
+        </member>
+        <member name="F:Framework.UI.HelpText.Isfloat">
+            <summary>
+            金币类型是否采用浮点数显示
+            </summary>
+        </member>
+        <member name="P:Framework.UI.HelpText.m_text">
+            <summary>
+            显示文本
             </summary>
         </member>
         <member name="M:Framework.UI.HelpText.PasswordText">
@@ -328,9 +507,50 @@
             金币文字
             </summary>
         </member>
+        <member name="T:Framework.UI.HelpText.Type">
+            <summary>
+            文本类型
+            </summary>
+        </member>
+        <member name="F:Framework.UI.HelpText.Type.Null">
+            <summary>
+            默认
+            显示最原本的Text不做任何修改
+            </summary>
+        </member>
+        <member name="F:Framework.UI.HelpText.Type.Password">
+            <summary>
+            密码
+            使用*代替字符且最多显示6个*
+            </summary>
+        </member>
+        <member name="F:Framework.UI.HelpText.Type.Text">
+            <summary>
+            文本
+            超出文本框的内容用...显示
+            </summary>
+        </member>
+        <member name="F:Framework.UI.HelpText.Type.Name">
+            <summary>
+            昵称
+            只会显示一行多出的字体用...显示
+            </summary>
+        </member>
+        <member name="F:Framework.UI.HelpText.Type.Money">
+            <summary>
+            金币
+            只显示数字且会显示..万或..亿
+            采用浮点数是会保留两位小数
+            </summary>
+        </member>
         <member name="T:Framework.UI.HelpTxtValueToKey">
             <summary>
             根据Key值获取其对应的Value值与LanguageManager联合使用
+            </summary>
+        </member>
+        <member name="F:Framework.UI.HelpTxtValueToKey.m_Content">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Framework.UI.HelpTxtValueToKey.SettingKey(System.String)">
@@ -341,8 +561,40 @@
         </member>
         <member name="T:Framework.UI.TextSpacing">
             <summary>
-            设置字间距
+            字间距修改工具
+            不支持Text中的alignment的横向对其修改
+            Text的lineSpacing必须大于0.675或者小于-0.675
             </summary>
+        </member>
+        <member name="F:Framework.UI.TextSpacing._Text_Spacing">
+            <summary>
+            字间距
+            </summary>
+        </member>
+        <member name="F:Framework.UI.TextSpacing.m_Everyword">
+            <summary>
+            每个字的顶点数
+            </summary>
+        </member>
+        <member name="M:Framework.UI.TextSpacing.ModifyMesh(UnityEngine.UI.VertexHelper)">
+            <summary>
+            
+            </summary>
+            <param name="vh"></param>
+        </member>
+        <member name="M:Framework.UI.TextSpacing.IsLine(System.Single,System.Single,System.Single)">
+            <summary>
+            判断是否换行
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.UI.TextSpacing.SettingEveryword(System.Collections.Generic.List{UnityEngine.UIVertex},System.Int32,System.Int32)">
+            <summary>
+            设置每个字体信息
+            </summary>
+            <param name="vertexList"></param>
+            <param name="curridx">该字符位于该行的第几个字符</param>
+            <param name="idx">该字符的初始顶点数</param>
         </member>
         <member name="T:Framework.UI.Gradient">
             <summary>
@@ -359,14 +611,50 @@
             下边的颜色
             </summary>
         </member>
+        <member name="F:Framework.UI.Gradient.m_Whole">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:Framework.UI.Gradient.m_Everyword">
             <summary>
             每个字的顶点数
             </summary>
         </member>
+        <member name="M:Framework.UI.Gradient.ModifyMesh(UnityEngine.UI.VertexHelper)">
+            <summary>
+            
+            </summary>
+            <param name="vh"></param>
+        </member>
         <member name="M:Framework.UI.Gradient.SettingEveryword(System.Collections.Generic.List{UnityEngine.UIVertex},System.Single,System.Single,System.Int32)">
             <summary>
             设置每个字的颜色信息
+            </summary>
+        </member>
+        <member name="M:Framework.UI.Gradient.SettingWholeWord(System.Collections.Generic.List{UnityEngine.UIVertex},System.Single,System.Single,System.Int32,System.Int32)">
+            <summary>
+            设置整体的颜色
+            </summary>
+            <param name="vertexList"></param>
+            <param name="topY"></param>
+            <param name="bottomY"></param>
+            <param name="start"></param>
+            <param name="end"></param>
+        </member>
+        <member name="T:Framework.UI.Gradient.Whole">
+            <summary>
+            整体性
+            </summary>
+        </member>
+        <member name="F:Framework.UI.Gradient.Whole.Every">
+            <summary>
+            单个字体
+            </summary>
+        </member>
+        <member name="F:Framework.UI.Gradient.Whole.Whole">
+            <summary>
+            整体
             </summary>
         </member>
     </members>

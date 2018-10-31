@@ -4,15 +4,32 @@ using UnityEngine;
 
 namespace Framework.Event
 {
+    /// <summary>
+    /// 事件类
+    /// </summary>
     public abstract class EventClass
     {
+        /// <summary>
+        /// 事件类型
+        /// </summary>
         public Type m_Type;
+        /// <summary>
+        /// 事件回调
+        /// </summary>
         public Delegate CallBack;
     }
+    /// <summary>
+    /// 事件管理基类
+    /// </summary>
+    /// <typeparam name="TEventHead"></typeparam>
+    /// <typeparam name="TEvent"></typeparam>
     public abstract class AbstractEvent<TEventHead, TEvent> : MonoBehaviour where TEvent : EventClass, new()
     {
         private List<TEvent> events = new List<TEvent>();
-
+        /// <summary>
+        /// 注册信息
+        /// </summary>
+        /// <param name="varEvent"></param>
         protected void RigistEvent(TEvent varEvent)
         {
             var temp_Type = varEvent.m_Type;
@@ -29,6 +46,10 @@ namespace Framework.Event
             }
             events.Add(varEvent);
         }
+        /// <summary>
+        /// 解除注册
+        /// </summary>
+        /// <param name="varEvent"></param>
         protected void UnregistEvent(TEvent varEvent)
         {
             var temp_Type = varEvent.m_Type;

@@ -36,7 +36,10 @@ namespace Framework.UI
         /// 每个字的顶点数
         /// </summary>
         private int m_Everyword = 6;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vh"></param>
         public override void ModifyMesh(VertexHelper vh)
         {
             if (!IsActive())
@@ -120,7 +123,7 @@ namespace Framework.UI
             for (int i = start; i < end; ++i)
             {
                 UIVertex uiVertex = vertexList[i];
-                uiVertex.color = Color32.Lerp(bottomColor, topColor, (uiVertex.position.y - bottomY) / uiElementHeight);
+                uiVertex.color = Color32.Lerp(topColor, bottomColor, (uiVertex.position.y - bottomY) / uiElementHeight);
                 vertexList[i] = uiVertex;
             }
         }
