@@ -140,6 +140,14 @@
             <param name="var_Tran"></param>
             <returns></returns>
         </member>
+        <member name="M:Framework.Help.Helper.IsParent(UnityEngine.Transform,UnityEngine.Transform)">
+            <summary>
+            判断物体的上级是否包含某个物体
+            </summary>
+            <param name="varTran"></param>
+            <param name="Parent"></param>
+            <returns></returns>
+        </member>
         <member name="M:Framework.Help.Helper.GetGames(UnityEngine.Transform)">
             <summary>
             获取物体下的所有子集（不包含子集的子集）
@@ -356,6 +364,11 @@
             遮挡蒙版
             </summary>
         </member>
+        <member name="F:Framework.Manager.WindowsManager.m_Mask_Color">
+            <summary>
+            遮挡蒙版的颜色
+            </summary>
+        </member>
         <member name="F:Framework.Manager.WindowsManager.m_WastWindows">
             <summary>
             废弃窗口
@@ -374,6 +387,21 @@
         <member name="F:Framework.Manager.WindowsManager.IsPeculiarCamera">
             <summary>
             设置使用特殊相机
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.WindowsManager.All_OpenWindow">
+            <summary>
+            所有打开的窗口
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.WindowsManager.All_WastWindow">
+            <summary>
+            所有关闭的窗口且未被销毁
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.WindowsManager.All_Windows">
+            <summary>
+            所有的窗口预制信息
             </summary>
         </member>
         <member name="M:Framework.Manager.WindowsManager.OnAwake">
@@ -406,6 +434,107 @@
             存放信息初始化
             </summary>
         </member>
+        <member name="M:Framework.Manager.WindowsManager.NewGameObject(System.String,UnityEngine.Transform)">
+            <summary>
+            创建物体
+            </summary>
+            <param name="varName">物体名称</param>
+            <param name="varParent">物体的父级</param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.AddResourcesWindows(System.String,System.String)">
+            <summary>
+            添加一个Resources路径的窗口预制
+            </summary>
+            <param name="varName">窗口名称</param>
+            <param name="varResourcesPath">预制的Resources路口</param>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.AddWindows(System.String,UnityEngine.GameObject)">
+            <summary>
+            添加一个窗口预制
+            </summary>
+            <param name="varName">窗口名称</param>
+            <param name="TempGame">窗口预制</param>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.OpenWindows(System.String,System.Boolean)">
+            <summary>
+            打开窗口
+            </summary>
+            <param name="varName">窗口名称</param>
+            <param name="IsMask">是否使用蒙版</param>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.CloseWindows(System.String)">
+            <summary>
+            关闭窗口（将窗口隐藏）
+            </summary>
+            <param name="varName"></param>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.CloseWindows(UnityEngine.Transform)">
+            <summary>
+            关闭窗口（将窗口隐藏）
+            </summary>
+            <param name="varTran"></param>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.DestroyWindows(System.String)">
+            <summary>
+            关闭窗口（销毁窗口）
+            </summary>
+            <param name="varName"></param>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.DestroyWindows(UnityEngine.Transform)">
+            <summary>
+            关闭窗口（销毁窗口）
+            </summary>
+            <param name="varTran"></param>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.Open_Winsows(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            打开窗口
+            </summary>
+            <param name="varName">窗口名称</param>
+            <param name="IsMask">是否需要蒙版</param>
+            <param name="IsLevel">是否参与顶层回调计算</param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.Close_Windows(System.String,System.Boolean)">
+            <summary>
+            关闭窗口
+            </summary>
+            <param name="varName">窗口名称</param>
+            <param name="IsDestroy">是否销毁</param>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.Close_Windows(UnityEngine.Transform,System.Boolean)">
+            <summary>
+            关闭窗口
+            </summary>
+            <param name="varTran">窗口实例</param>
+            <param name="IsDestroy">是否销毁</param>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.NewWindows(System.String)">
+            <summary>
+            创建一个窗口
+            </summary>
+            <param name="varName">窗口名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.ActivateWindowsTop(Framework.Manager.WindowsManager.Windows)">
+            <summary>
+            打开一个窗口置顶
+            </summary>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.CommandMask">
+            <summary>
+            控制蒙版
+            </summary>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.JudeWindowsNull(Framework.Manager.WindowsManager.Windows)">
+            <summary>
+            当窗口实例被用户手动清理时
+            处理掉已不存在的窗口占用的层级
+            </summary>
+            <param name="varWindows">问题窗口</param>
+            <returns></returns>
+        </member>
         <member name="T:Framework.Manager.WindowsManager.Windows">
             <summary>
             窗口信息
@@ -429,6 +558,11 @@
         <member name="F:Framework.Manager.WindowsManager.Windows.m_IsLevel">
             <summary>
             窗口是否参与层数计算
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.WindowsManager.Windows.Level">
+            <summary>
+            当前窗口位于的层数
             </summary>
         </member>
         <member name="T:Framework.Manager.LanguageManager">

@@ -86,6 +86,24 @@ namespace Framework.Help
                 return var_T;
         }
         /// <summary>
+        /// 判断物体的上级是否包含某个物体
+        /// </summary>
+        /// <param name="varTran"></param>
+        /// <param name="Parent"></param>
+        /// <returns></returns>
+        public static bool IsParent(Transform varTran,Transform Parent)
+        {
+            if (varTran == null)
+                return false;
+            if (Parent == null)
+                return false;
+            if (varTran.parent == Parent)
+                return true;
+            else
+                return IsParent(varTran.parent, Parent);
+        }
+
+        /// <summary>
         /// 获取物体下的所有子集（不包含子集的子集）
         /// </summary>
         /// <param name="varTran"></param>

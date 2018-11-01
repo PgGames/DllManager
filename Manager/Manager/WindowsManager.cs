@@ -31,22 +31,23 @@ namespace Framework.Manager
         /// <summary>
         /// 相机
         /// </summary>
-        [SerializeField]
         protected Camera m_Camera;
         /// <summary>
         /// 遮挡蒙版
         /// </summary>
-        [SerializeField]
         protected Transform m_Mask;
+        /// <summary>
+        /// 遮挡蒙版的颜色
+        /// </summary>
+        [SerializeField]
+        protected Color m_Mask_Color = new Color(0, 0, 0, 0.4f);
         /// <summary>
         /// 废弃窗口
         /// </summary>
-        [SerializeField]
         protected Transform m_WastWindows;
         /// <summary>
         /// 打开窗口
         /// </summary>
-        [SerializeField]    
         protected Transform m_OpenWindows;
         /// <summary>
         /// 设置窗口是否持久化
@@ -62,19 +63,15 @@ namespace Framework.Manager
         /// <summary>
         /// 所有打开的窗口
         /// </summary>
-        Dictionary<string, Windows> All_OpenWindow = new Dictionary<string, Windows>();
+        protected Dictionary<string, Windows> All_OpenWindow = new Dictionary<string, Windows>();
         /// <summary>
-        /// 所有打开的窗口(用于计算蒙版位置)
+        /// 所有关闭的窗口且未被销毁
         /// </summary>
-        List<Windows> m_OpenWindow_List = new List<Windows>();
-        /// <summary>
-        /// 所有关闭的窗口且为被销毁
-        /// </summary>
-        Dictionary<string, Windows> All_WastWindow = new Dictionary<string, Windows>();
+        protected Dictionary<string, Windows> All_WastWindow = new Dictionary<string, Windows>();
         /// <summary>
         /// 所有的窗口预制信息
         /// </summary>
-        Dictionary<string, GameObject> All_Windows = new Dictionary<string, GameObject>();
+        protected Dictionary<string, GameObject> All_Windows = new Dictionary<string, GameObject>();
 
         /// <summary>
         /// OnAwake代替Awake，在Awake之后Start之前调用
@@ -93,7 +90,13 @@ namespace Framework.Manager
             WindowsInit();
 
             if (IsDontDestroyOnLoad)
+            {
                 GameObject.DontDestroyOnLoad(this.transform);
+                if (!Helper.IsParent(m_Canvas.transform,this.transform))
+                    GameObject.DontDestroyOnLoad(m_Canvas.transform);
+                if (!Helper.IsParent(m_EventSystem.transform, this.transform))
+                    GameObject.DontDestroyOnLoad(m_EventSystem.transform);
+            }
             base.Init();
         }
 
@@ -102,7 +105,7 @@ namespace Framework.Manager
         /// <summary>
         /// 相机的初始化
         /// </summary>
-        private void CameraInit(GameObject Parent)
+        protected virtual void CameraInit(GameObject Parent)
         {
             if (m_Camera == null)
             {
@@ -124,7 +127,7 @@ namespace Framework.Manager
         /// <summary>
         /// 画布初始化
         /// </summary>
-        private void CanvasInit()
+        protected virtual void CanvasInit()
         {
             if (m_Canvas == null)
             {
@@ -164,7 +167,7 @@ namespace Framework.Manager
         /// <summary>
         /// 画布的响应事件初始化
         /// </summary>
-        private void EventSystemInit()
+        protected virtual void EventSystemInit()
         {
             if (m_EventSystem == null)
             {
@@ -178,7 +181,7 @@ namespace Framework.Manager
         /// <summary>
         /// 存放信息初始化
         /// </summary>
-        private void WindowsInit()
+        protected virtual void WindowsInit()
         {
             //设置废弃窗口存放点
             if (m_WastWindows == null)
@@ -201,12 +204,19 @@ namespace Framework.Manager
                 TempMask.gameObject.SetActive(false);
 
                 Image TempUI = TempMask.gameObject.AddComponent<Image>();
-                TempUI.color = new Color(0, 0, 0, 0.3f);
+                TempUI.color = m_Mask_Color;
+                //new Color(0, 0, 0, 0.3f);
 
                 m_Mask = TempMask;
             }
         }
-        private Transform NewGameObject(string varName, Transform varParent)
+        /// <summary>
+        /// 创建物体
+        /// </summary>
+        /// <param name="varName">物体名称</param>
+        /// <param name="varParent">物体的父级</param>
+        /// <returns></returns>
+        protected Transform NewGameObject(string varName, Transform varParent)
         {
             GameObject TempGame = new GameObject(varName);
             RectTransform TempRect = TempGame.AddComponent<RectTransform>();
@@ -291,7 +301,38 @@ namespace Framework.Manager
         {
             return Open_Winsows(varName, IsMask, true);
         }
-
+        /// <summary>
+        /// 关闭窗口（将窗口隐藏）
+        /// </summary>
+        /// <param name="varName"></param>
+        public void CloseWindows(string varName)
+        {
+            Close_Windows(varName);
+        }
+        /// <summary>
+        /// 关闭窗口（将窗口隐藏）
+        /// </summary>
+        /// <param name="varTran"></param>
+        public void CloseWindows(Transform varTran)
+        {
+            Close_Windows(varTran);
+        }
+        /// <summary>
+        /// 关闭窗口（销毁窗口）
+        /// </summary>
+        /// <param name="varName"></param>
+        public void DestroyWindows(string varName)
+        {
+            Close_Windows(varName, true);
+        }
+        /// <summary>
+        /// 关闭窗口（销毁窗口）
+        /// </summary>
+        /// <param name="varTran"></param>
+        public void DestroyWindows(Transform varTran)
+        {
+            Close_Windows(varTran,true);
+        }
 
         #endregion
 
@@ -304,68 +345,142 @@ namespace Framework.Manager
         /// <param name="IsMask">是否需要蒙版</param>
         /// <param name="IsLevel">是否参与顶层回调计算</param>
         /// <returns></returns>
-        private GameObject Open_Winsows(string varName, bool IsMask,bool IsLevel)
+        protected virtual GameObject Open_Winsows(string varName, bool IsMask,bool IsLevel)
         {
             Windows Temp_CurrentWindows = null;
             if (All_WastWindow.ContainsKey(varName))
             {
                 //将窗口从垃圾站中移除
                 Temp_CurrentWindows = All_WastWindow[varName];
-                All_WastWindow.Remove(varName);
-                All_OpenWindow.Add(varName, Temp_CurrentWindows);
+                if (JudeWindowsNull(Temp_CurrentWindows))
+                {
+                    Temp_CurrentWindows = NewWindows(varName);
+                }
+                else
+                {
+                    All_WastWindow.Remove(varName);
+                    All_OpenWindow.Add(varName, Temp_CurrentWindows);
+                }
             }
             else if (All_OpenWindow.ContainsKey(varName))
             {
                 //获取窗口
                 Temp_CurrentWindows = All_OpenWindow[varName];
+                if (JudeWindowsNull(Temp_CurrentWindows))
+                {
+                    Temp_CurrentWindows = NewWindows(varName);
+                }
             }
             else if (All_Windows.ContainsKey(varName))
             {
                 //创建窗口
-                Temp_CurrentWindows = new Windows();
-                Temp_CurrentWindows.m_WindowType = varName;
-                Temp_CurrentWindows.m_Windows = NewWindows(varName);
-                if (Temp_CurrentWindows.m_Windows == null)
-                    return null;
-                //新建的窗口层级最大
-                Temp_CurrentWindows.Level = int.MaxValue;
-                All_OpenWindow.Add(varName, Temp_CurrentWindows);
+                Temp_CurrentWindows = NewWindows(varName);
             }
             else
             {
                 //窗口不存在
                 return null;
             }
-            //设置窗口的蒙版信息
-            Temp_CurrentWindows.m_IsMask = IsMask;
-            //设置窗口的层数计算
-            Temp_CurrentWindows.m_IsLevel = IsLevel;
-            //将窗口打开置顶
-            ActivateWindowsTop(Temp_CurrentWindows);
+            if (Temp_CurrentWindows.m_Windows == null)
+            {
+                //窗口被用户手动清理（窗口实例不存在）
+                foreach (var item in All_OpenWindow.Values)
+                {
+                    if (item.Level > Temp_CurrentWindows.Level)
+                        item.Level--;
+                }
+            }
+            else
+            {
+                //设置窗口的蒙版信息
+                Temp_CurrentWindows.m_IsMask = IsMask;
+                //设置窗口的层数计算
+                Temp_CurrentWindows.m_IsLevel = IsLevel;
+                //将窗口打开置顶
+                ActivateWindowsTop(Temp_CurrentWindows);
+            }
+            //设置蒙版
+            CommandMask();
 
             return Temp_CurrentWindows.m_Windows;
+        }
+
+        /// <summary>
+        /// 关闭窗口
+        /// </summary>
+        /// <param name="varName">窗口名称</param>
+        /// <param name="IsDestroy">是否销毁</param>
+        protected virtual void Close_Windows(string varName, bool IsDestroy = false)
+        {
+            if (!All_OpenWindow.ContainsKey(varName))
+            {
+                Debug.LogWarning("Windows Name:" + varName + " Is Not Open");
+                return;
+            }
+            Windows windows = All_OpenWindow[varName];
+            All_OpenWindow.Remove(varName);
+            //关闭时调节窗口层级
+            foreach (var item in All_OpenWindow.Values)
+            {
+                if (item.Level>windows.Level)
+                {
+                    item.Level--;
+                }
+            }
+            windows.Level = int.MaxValue;
+            if (IsDestroy)
+                GameObject.Destroy(windows.m_Windows);
+            else
+            {
+                windows.m_Windows.transform.SetParent(m_WastWindows, false);
+                All_WastWindow.Add(windows.m_WindowType, windows);
+            }
+            CommandMask();
+        }
+        /// <summary>
+        /// 关闭窗口
+        /// </summary>
+        /// <param name="varTran">窗口实例</param>
+        /// <param name="IsDestroy">是否销毁</param>
+        protected virtual void Close_Windows(Transform varTran,bool IsDestroy = false)
+        {
+            foreach (var item in All_OpenWindow.Values)
+            {
+                if (item.m_Windows == varTran)
+                {
+                    Close_Windows(item.m_WindowType, IsDestroy);
+                    return;
+                }
+            }
+            Debug.LogWarning("Windows Is Not Open");
+            return;
         }
         /// <summary>
         /// 创建一个窗口
         /// </summary>
         /// <param name="varName">窗口名称</param>
         /// <returns></returns>
-        private GameObject NewWindows(string varName)
+        protected virtual Windows NewWindows(string varName)
         {
             if (!All_Windows.ContainsKey(varName))
             {
                 Debug.LogError("Windows Name:"+varName+" not exist");
                 return null;
             }
+            Windows TempWindows = new Windows();
             GameObject TempGame = All_Windows[varName];
             GameObject Temp_Game = GameObject.Instantiate(TempGame);
             Temp_Game.name = TempGame.name;
-            return Temp_Game;
+            TempWindows.m_WindowType = varName;
+            TempWindows.m_Windows = Temp_Game;
+            TempWindows.Level = int.MaxValue;
+            All_OpenWindow.Add(varName, TempWindows);
+            return TempWindows;
         }
         /// <summary>
         /// 打开一个窗口置顶
         /// </summary>
-        private void ActivateWindowsTop(Windows varWindows)
+        protected virtual void ActivateWindowsTop(Windows varWindows)
         {
             foreach (var item in All_OpenWindow)
             {
@@ -382,7 +497,7 @@ namespace Framework.Manager
         /// <summary>
         /// 控制蒙版
         /// </summary>
-        private void CommandMask()
+        protected virtual void CommandMask()
         {
             m_Mask.gameObject.SetActive(false);
             List<Windows> TempList = new List<Windows>(All_OpenWindow.Values);
@@ -399,6 +514,31 @@ namespace Framework.Manager
                     }
                 }
             }
+        }
+        /// <summary>
+        /// 当窗口实例被用户手动清理时
+        /// 处理掉已不存在的窗口占用的层级
+        /// </summary>
+        /// <param name="varWindows">问题窗口</param>
+        /// <returns></returns>
+        protected virtual bool JudeWindowsNull(Windows varWindows)
+        {
+            if (varWindows.m_Windows == null && All_OpenWindow.ContainsValue(varWindows))
+            {
+                foreach (var item in All_OpenWindow.Values)
+                {
+                    if (item.Level > varWindows.Level)
+                        item.Level--;
+                }
+                All_OpenWindow.Remove(varWindows.m_WindowType);
+                return true;
+            }
+            else if (varWindows.m_Windows == null && All_WastWindow.ContainsValue(varWindows))
+            {
+                All_WastWindow.Remove(varWindows.m_WindowType);
+                return true;
+            }
+            return false;
         }
         #endregion
 
