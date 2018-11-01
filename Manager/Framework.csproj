@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>F:\Unity\Project_2017_4_11f1\NC_81Bridge\trunk\Demo\Assets\Plugins\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -56,6 +56,7 @@
     <Compile Include="Help\Helper.cs" />
     <Compile Include="Manager\GlobalEventManager.cs" />
     <Compile Include="Manager\CurrentSceneEventManager.cs" />
+    <Compile Include="Manager\WindowsManager.cs" />
     <Compile Include="UI\HelpText.cs" />
     <Compile Include="UI\HelpTxtValueToKey.cs" />
     <Compile Include="Manager\LanguageManager.cs" />

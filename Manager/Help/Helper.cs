@@ -137,6 +137,40 @@ namespace Framework.Help
 
 
 
+        /// <summary>
+        /// 创建物体
+        /// </summary>
+        /// <param name="varName">物体的名称</param>
+        /// <param name="varParent">物体的父级</param>
+        /// <param name="varLayer">物体的标签层级</param>
+        /// <returns></returns>
+        public static GameObject NewGameObject(string varName, GameObject varParent,string varLayer = "UI")
+        {
+            GameObject TempGame = new GameObject(varName);
+            TempGame.transform.SetParent(varParent.transform);
+            TempGame.transform.localPosition = Vector3.zero;
+            TempGame.transform.localScale = Vector3.one;
+            TempGame.transform.localEulerAngles = Vector3.zero;
+            TempGame.layer = LayerMask.NameToLayer(varLayer);
+
+            return TempGame;
+        }
+        /// <summary>
+        /// 创建物体并挂载脚本
+        /// </summary>
+        /// <typeparam name="T">挂载的脚本类型</typeparam>
+        /// <param name="varName">物体的名称</param>
+        /// <param name="varParent">物体的父级</param>
+        /// <param name="varLayer">物体的标签层级</param>
+        /// <returns></returns>
+        public static T NewGameObject<T>(string varName, GameObject varParent,string varLayer = "UI") where T : Component
+        {
+            GameObject TempGame = NewGameObject(varName, varParent);
+            T Temp = TempGame.AddComponent<T>();
+            return Temp;
+        }
+
+
         #region 文件解析
         /// <summary>
         /// 解析Xml文件
@@ -224,12 +258,7 @@ namespace Framework.Help
         }
 
         #endregion
-
-
-
-
-
-
+        
         #region 数字转换
         /// <summary>
         /// 将数字转换成中文

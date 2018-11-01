@@ -155,6 +155,25 @@
             <param name="path"></param>
             <param name="activeSelf"></param>
         </member>
+        <member name="M:Framework.Help.Helper.NewGameObject(System.String,UnityEngine.GameObject,System.String)">
+            <summary>
+            创建物体
+            </summary>
+            <param name="varName">物体的名称</param>
+            <param name="varParent">物体的父级</param>
+            <param name="varLayer">物体的标签层级</param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Help.Helper.NewGameObject``1(System.String,UnityEngine.GameObject,System.String)">
+            <summary>
+            创建物体并挂载脚本
+            </summary>
+            <typeparam name="T">挂载的脚本类型</typeparam>
+            <param name="varName">物体的名称</param>
+            <param name="varParent">物体的父级</param>
+            <param name="varLayer">物体的标签层级</param>
+            <returns></returns>
+        </member>
         <member name="M:Framework.Help.Helper.LoadXml``1(System.String,``0@)">
             <summary>
             解析Xml文件
@@ -305,6 +324,111 @@
         <member name="T:Framework.Manager.CurrentEventHead">
             <summary>
             事件定义必须继承该类(用作传输数据内容)
+            </summary>
+        </member>
+        <member name="T:Framework.Manager.WindowsManager">
+            <summary>
+            窗口管理器（挂载在窗口上时可手动设置配置信息）
+            
+            持久化问题:挂载时可手动设置（默认为持久化状态）
+            
+            相机画布:挂载时可手动设置是否使用特殊相机（默认为使用）
+            
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.WindowsManager.m_Canvas">
+            <summary>
+            画布（挂载在窗口上时需要手动设置）
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.WindowsManager.m_EventSystem">
+            <summary>
+            画布的响应信息
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.WindowsManager.m_Camera">
+            <summary>
+            相机
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.WindowsManager.m_Mask">
+            <summary>
+            遮挡蒙版
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.WindowsManager.m_WastWindows">
+            <summary>
+            废弃窗口
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.WindowsManager.m_OpenWindows">
+            <summary>
+            打开窗口
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.WindowsManager.IsDontDestroyOnLoad">
+            <summary>
+            设置窗口是否持久化
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.WindowsManager.IsPeculiarCamera">
+            <summary>
+            设置使用特殊相机
+            </summary>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.OnAwake">
+            <summary>
+            OnAwake代替Awake，在Awake之后Start之前调用
+            </summary>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.Init">
+            <summary>
+            窗口初始化，在OnAwake之后Start之前调用
+            </summary>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.CameraInit(UnityEngine.GameObject)">
+            <summary>
+            相机的初始化
+            </summary>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.CanvasInit">
+            <summary>
+            画布初始化
+            </summary>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.EventSystemInit">
+            <summary>
+            画布的响应事件初始化
+            </summary>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.WindowsInit">
+            <summary>
+            存放信息初始化
+            </summary>
+        </member>
+        <member name="T:Framework.Manager.WindowsManager.Windows">
+            <summary>
+            窗口信息
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.WindowsManager.Windows.m_WindowType">
+            <summary>
+            窗口类型
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.WindowsManager.Windows.m_Windows">
+            <summary>
+            窗口的示例
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.WindowsManager.Windows.m_IsMask">
+            <summary>
+            窗口是否有蒙版
+            </summary>
+        </member>
+        <member name="F:Framework.Manager.WindowsManager.Windows.m_IsLevel">
+            <summary>
+            窗口是否参与层数计算
             </summary>
         </member>
         <member name="T:Framework.Manager.LanguageManager">
