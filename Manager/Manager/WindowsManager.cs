@@ -81,9 +81,9 @@ namespace Framework.Manager
             base.OnAwake();
         }
         /// <summary>
-        /// 窗口初始化，在OnAwake之后Start之前调用
+        /// 窗口初始化需手动调用
         /// </summary>
-        protected override void Init()
+        public override void Init()
         {
             CanvasInit();
             EventSystemInit();
@@ -299,6 +299,8 @@ namespace Framework.Manager
         /// <param name="IsMask">是否使用蒙版</param>
         public GameObject OpenWindows(string varName, bool IsMask = false)
         {
+            if (!JudgeInitWindows())
+                return null;
             return Open_Winsows(varName, IsMask, true);
         }
         /// <summary>
@@ -337,6 +339,20 @@ namespace Framework.Manager
         #endregion
 
         #region private
+        /// <summary>
+        /// 判断窗口管理器是否初始化
+        /// </summary>
+        /// <returns></returns>
+        protected bool JudgeInitWindows()
+        {
+            if (m_OpenWindows == null)
+            {
+                Debug.LogError("Please call WindowManager.GetManager.Init Method");
+                return false;
+            }
+            return true;
+
+        }
 
         /// <summary>
         /// 打开窗口
@@ -546,7 +562,7 @@ namespace Framework.Manager
         /// <summary>
         /// 窗口信息
         /// </summary>
-        public class Windows
+        protected class Windows
         {
             /// <summary>
             /// 窗口类型

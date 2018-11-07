@@ -111,6 +111,41 @@
             <param name="varhead"></param>
             <param name="varevent"></param>
         </member>
+        <member name="T:Framework.Event.ModelEvent">
+            <summary>
+            模型的点击
+            </summary>
+        </member>
+        <member name="F:Framework.Event.ModelEvent.onclick_down">
+            <summary>
+            点击模型回调-按下
+            </summary>
+        </member>
+        <member name="F:Framework.Event.ModelEvent.onclick_center">
+            <summary>
+            点击模型回调-按住
+            </summary>
+        </member>
+        <member name="F:Framework.Event.ModelEvent.onclick_up">
+            <summary>
+            点击模型回调-抬起
+            </summary>
+        </member>
+        <member name="M:Framework.Event.ModelEvent.OnClick_Down">
+            <summary>
+            点击按下
+            </summary>
+        </member>
+        <member name="M:Framework.Event.ModelEvent.OnClick_Center">
+            <summary>
+            点击按住
+            </summary>
+        </member>
+        <member name="M:Framework.Event.ModelEvent.OnClick_Up">
+            <summary>
+            点击抬起
+            </summary>
+        </member>
         <member name="T:Framework.Help.Helper">
             <summary>
             帮助工具
@@ -249,6 +284,37 @@
             </summary>
             <param name="varNum"></param>
             <returns></returns>
+        </member>
+        <member name="T:Framework.Help.SavePicture">
+            <summary>
+            保存图片
+            </summary>
+        </member>
+        <member name="T:Framework.Help.SavePicture.mothod">
+            <summary>
+            
+            </summary>
+            <param name="varSuccess">是否保存成功</param>
+            <param name="ImagePath">图片路径</param>
+        </member>
+        <member name="P:Framework.Help.SavePicture.SavePath">
+            <summary>
+            存储图片的文件夹路径
+            </summary>
+        </member>
+        <member name="M:Framework.Help.SavePicture.SaveImage(Framework.Help.SavePicture.mothod)">
+            <summary>
+            保存图片（当前界面的截图）
+            安卓默认保存到相册
+            </summary>
+            <param name="varMothod">存储回调</param>
+        </member>
+        <member name="M:Framework.Help.SavePicture.SaveImage(System.String,Framework.Help.SavePicture.mothod)">
+            <summary>
+            保存图片（当前界面的截图）
+            </summary>
+            <param name="varPath">保存路径(文件夹路径)安卓默认为相册路径</param>
+            <param name="varMothod">保存回调</param>
         </member>
         <member name="T:Framework.Manager.GlobalEventManager">
             <summary>
@@ -411,7 +477,7 @@
         </member>
         <member name="M:Framework.Manager.WindowsManager.Init">
             <summary>
-            窗口初始化，在OnAwake之后Start之前调用
+            窗口初始化需手动调用
             </summary>
         </member>
         <member name="M:Framework.Manager.WindowsManager.CameraInit(UnityEngine.GameObject)">
@@ -486,6 +552,12 @@
             关闭窗口（销毁窗口）
             </summary>
             <param name="varTran"></param>
+        </member>
+        <member name="M:Framework.Manager.WindowsManager.JudgeInitWindows">
+            <summary>
+            判断窗口管理器是否初始化
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Framework.Manager.WindowsManager.Open_Winsows(System.String,System.Boolean,System.Boolean)">
             <summary>

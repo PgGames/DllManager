@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Framework.Base
 {
-     /// <summary>
-     /// 单利类型的基类(切换场景时单利不会被清楚)
-     /// </summary>
-     /// <typeparam name="T"></typeparam>
+    /// <summary>
+    /// 单利类型的基类(切换场景时单利不会被清楚)
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class DontManager<T> : MonoBehaviour where T : Component
     {
         private static T _Manager;
@@ -51,7 +51,6 @@ namespace Framework.Base
             if (_Manager == null)
                 _Manager = this.GetComponent<T>();
             OnAwake();
-            Init();
         }
         /// <summary>
         /// 使用OnAwake代替Awake
@@ -62,7 +61,7 @@ namespace Framework.Base
         /// <summary>
         /// 初始化信息在Awake之后调用
         /// </summary>
-        protected virtual void Init()
+        public virtual void Init()
         {
         }
     }

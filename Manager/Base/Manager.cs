@@ -54,7 +54,6 @@ namespace Framework.Base
             if (_Manager == null)
                 _Manager = this.GetComponent<T>();
             OnAwake();
-            Init();
         }
         /// <summary>
         /// 使用OnAwake代替Awake
@@ -65,7 +64,7 @@ namespace Framework.Base
         /// <summary>
         /// 初始化信息在Awake之后调用
         /// </summary>
-        protected virtual void Init()
+        public virtual void Init()
         {
         }
 
