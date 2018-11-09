@@ -151,13 +151,18 @@ namespace Framework.Manager
             for (int i = 0; i < varLanguage.Length; i++)
             {
                 Language Temp_Language = varLanguage[i];
+                Dictionary<string, string> Temp_DIC_Language;
                 if (Dic_Language.ContainsKey(Temp_Language.m_Type))
-                    continue;
-                Dictionary<string, string> Temp_DIC_Language = new Dictionary<string, string>();
-
-                ReadTextAsset(Temp_Language.m_Txt, Temp_DIC_Language);
-                Dic_Language.Add(Temp_Language.m_Type, Temp_DIC_Language);
-
+                {
+                    Temp_DIC_Language = Dic_Language[Temp_Language.m_Type];
+                    ReadTextAsset(Temp_Language.m_Txt, Temp_DIC_Language);
+                }
+                else
+                {
+                    Temp_DIC_Language = new Dictionary<string, string>();
+                    ReadTextAsset(Temp_Language.m_Txt, Temp_DIC_Language);
+                    Dic_Language.Add(Temp_Language.m_Type, Temp_DIC_Language);
+                }
             }
         }
         /// <summary>
